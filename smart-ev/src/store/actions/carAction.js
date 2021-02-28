@@ -24,17 +24,20 @@ export const fetchCars = () => {
     }
 }
 
-export const fetchDetail = (id) => {  
+export const fetchDetail = (id , token) => {  
   return (dispatch, getState) => {
       dispatch({ type: 'SET_LOADING', payload: true })
       dispatch({ type: 'SET_CAR', payload: {}})
         axios({
           method:'get',
           url: 'http://localhost:3000/cars/'+id,
+          headers: {
+            access_token: token
+          }
         })
           .then(response => {
             setTimeout(() => {
-              dispatch({ type: 'SET_CAR', payload: response.data.cars})
+              dispatch({ type: 'SET_CAR', payload: response.data.car})
             }, 1000)    
           })
           .catch(error => {

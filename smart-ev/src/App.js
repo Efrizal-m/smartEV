@@ -31,11 +31,11 @@ const App = () => {
             <AuthRoute path="/register" type="guest">
               <Register></Register>
             </AuthRoute>
-            <AuthRoute path="/cars" type="private">
-              <Home></Home>
-            </AuthRoute>
             <AuthRoute path="/cars/:id" type="private">
               <Detail></Detail>
+            </AuthRoute>
+            <AuthRoute path="/cars" type="private">
+              <Home></Home>
             </AuthRoute>
             <AuthRoute path="/whistlists" type="private">
               <Whistlist></Whistlist>
