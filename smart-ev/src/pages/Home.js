@@ -1,6 +1,7 @@
 import React from 'react';
 import Content from '../components/Content'
 import Navbar from '../components/Navbar'
+import SearchBar from '../components/SearchBar'
 
 import Grid from '@material-ui/core/Grid';
 import clsx from 'clsx';
@@ -89,6 +90,7 @@ const Home = () => {
     setOpen(false);
   };
 
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -111,6 +113,7 @@ const Home = () => {
           <Typography variant="h6" noWrap>
             SmartEV
           </Typography>
+          <SearchBar/>
         </Toolbar>
       </AppBar>
       <Drawer

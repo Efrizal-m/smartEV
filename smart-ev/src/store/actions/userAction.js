@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export const loginUser = payload => {
   return (dispatch, getState) => {
@@ -32,7 +33,11 @@ export const registerUser = payload => {
       data: payload
     })
     .then(response => {
-      console.log(response);
+      Swal.fire(
+        'Registered!',
+        'You can go to login page now.',
+        'success'
+      )
     })
     .catch(error => {
       console.log(error);

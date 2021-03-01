@@ -1,9 +1,11 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export const fetchCars = () => {  
   return (dispatch, getState) => {
       dispatch({ type: 'SET_LOADING', payload: true })
       dispatch({ type: 'SET_CARS', payload: []})
+      dispatch({ type: 'SET_FILTERED_CAR', payload: []})
         axios({
           method:'get',
           url: 'http://localhost:3000/cars',
@@ -26,7 +28,7 @@ export const fetchCars = () => {
 
 export const fetchDetail = (id , token) => {  
   return (dispatch, getState) => {
-      // dispatch({ type: 'SET_LOADING', payload: true })
+      dispatch({ type: 'SET_LOADING', payload: true })
       dispatch({ type: 'SET_CAR', payload: {}})
         axios({
           method:'get',
@@ -59,6 +61,11 @@ export const addCar = (data , token) => {
         })
           .then(response => {
             dispatch({ type: 'ADD_CAR', payload: response.data})
+            Swal.fire(
+              'New Data Confirmed!',
+              'Your has added a new data.',
+              'success'
+            )
           })
           .catch(error => {
             dispatch({ type: 'SET_ERROR', payload: error })
@@ -78,14 +85,21 @@ export const updateCar = (id, data , token) => {
         })
           .then(response => {
             const state = getState()
-            const cars = state.cars
+            const cars = state.carReducer.cars
             let newData = []
             cars.forEach(data => {
-              if (data._id.toString() !== `ObjectId(${id})` ) {
-               newData.push(data) 
+              if (data._id !== id ) {
+                newData.push(data) 
+              } else {
+                newData.push(response.data)
               }
             })
-            dispatch({ type: 'SET_CAR', payload: response.data})
+            dispatch({ type: 'SET_CARS', payload: newData})
+            Swal.fire(
+              'Your data has been updated!',
+              'Your data file has been updated.',
+              'success'
+            )
           })
           .catch(error => {
             dispatch({ type: 'SET_ERROR', payload: error })
@@ -104,17 +118,36 @@ export const destroyCar = (id , token) => {
         })
           .then(response => {
             const state = getState()
-            const cars = state.cars
+            const cars = state.carReducer.cars
             let newData = []
             cars.forEach(data => {
-              if (data._id.toString() !== `ObjectId(${id})` ) {
+              if (data._id !== id ) {
                newData.push(data) 
               }
             })
-            dispatch({ type: 'SET_CAR', payload: newData})
+            dispatch({ type: 'SET_CARS', payload: newData})
+            Swal.fire(
+              'Deleted!',
+              'Your data file has been deleted.',
+              'success'
+            )
           })
           .catch(error => {
             dispatch({ type: 'SET_ERROR', payload: error })
           })
     }
+}
+
+export const fetchFilteredCar = (payload) => {
+  return (dispatch, getState) => {
+    dispatch({ type: 'SET_FILTERED_CAR', payload})
+    const state = getState()
+    const cars = state.carReducer.cars
+  }
+}
+
+export const inputFiltered = (payload) => {
+  return (dispatch, getState) => {
+    dispatch({ type: 'SET_INPUT_FILTERED_CAR', payload})
+  }
 }
