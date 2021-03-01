@@ -8,10 +8,10 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
-
+import PublishIcon from '@material-ui/icons/Publish';
+import StarIcon from '@material-ui/icons/Star';
+import HomeIcon from '@material-ui/icons/Home';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const Navbar = () => {
   const history = useHistory()
@@ -38,22 +38,22 @@ const Navbar = () => {
     <div>
         <List>
             <ListItem button onClick={handleHome}>
-              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText>Home</ListItemText>
             </ListItem>
             <ListItem button onClick={handleWhistlist}>
-              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemIcon><StarIcon /></ListItemIcon>
               <ListItemText>Whistlists</ListItemText>
             </ListItem>
             <ListItem button onClick={handleUpload}>
-              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemIcon><PublishIcon/></ListItemIcon>
               <ListItemText>Upload</ListItemText>
             </ListItem>
         </List>
         <Divider />
         <List>
             <ListItem button onClick={handleLogout}>
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><ExitToAppIcon /></ListItemIcon>
               <ListItemText>Logout</ListItemText>
             </ListItem>
         </List>

@@ -21,13 +21,31 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      SmartEV
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
 }
+
+const sample = [
+  {
+    "name": "Volkswagen ID.4 Pure Performance",
+    "image": "https://i.imgur.com/Fhg5GDs.jpg",
+    "year": 2020
+  },
+  {
+    "name": "Tesla 2 Pure Performance",
+    "image": "https://i.imgur.com/CESnnyJ.jpg",
+    "year": 2021
+  },
+  {
+    "name": "Android ID.4 Pure Performance",
+    "image": "https://i.imgur.com/Fhg5GDs.jpg",
+    "year": 2018
+  }
+]
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -61,8 +79,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3];
-
 const Main = () => {
     const classes = useStyles();
     const history = useHistory()
@@ -89,9 +105,7 @@ const Main = () => {
                   Smart Electric Vehicle Inc.
               </Typography>
               <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                Something short and leading about the collection below—its contents, the creator, etc.
-                Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-                entirely.
+                Place You can find your drean car easily.
               </Typography>
               <div className={classes.heroButtons}>
                 <Grid container spacing={2} justify="center">
@@ -109,26 +123,23 @@ const Main = () => {
               Sample Product
           </Typography>
             <Grid container spacing={4}>
-              {cards.map((card) => (
+              {sample.map((card) => (
                 <Grid item key={card} xs={12} sm={6} md={4}>
                   <Card className={classes.card}>
                     <CardMedia
                       className={classes.cardMedia}
-                      image="https://source.unsplash.com/random"
+                      image={card.image}
                       title="Image title"
                     />
                     <CardContent className={classes.cardContent}>
                       <Typography gutterBottom variant="h5" component="h2">
-                        EV Car
+                        { card.name }
                       </Typography>
                       <Typography>
-                        This is a car.
+                        { card.year }
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" color="primary">
-                        Learn More...
-                      </Button>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -139,10 +150,7 @@ const Main = () => {
         {/* Footer */}
         <footer className={classes.footer}>
           <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
-          <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            Something here to give the footer a purpose!
+            Best Of The Year
           </Typography>
           <Copyright />
         </footer>

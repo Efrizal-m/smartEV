@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { addCar } from '../store/actions/carAction'
+import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateCar, fetchDetail } from '../store/actions/carAction'
+import { ErrorPage } from '../pages'
 
 import Header from '../components/Header'
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +23,7 @@ function Copyright() {
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://material-ui.com/">
-        SmartEV
+          Your Website
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -69,7 +71,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Upload = () => {
+const Update = () => {
+    const {id} = useParams()
+    const car = useSelector(state => state.carReducer.car)
+    // const loading = useSelector(state => state.carReducer.loading)
+    const error = useSelector(state => state.carReducer.error)
+
     const classes = useStyles();
     const dispatch = useDispatch()
     const history = useHistory()
@@ -86,6 +93,18 @@ const Upload = () => {
         fastCharge: '',
         price: ''
     })
+
+    useEffect(() => {
+      const token = localStorage.getItem('access_token')
+      dispatch(fetchDetail(id, token))
+      // if (car) {
+      //   setInputForm(car)
+      // }
+    }, [dispatch, id])
+    
+  //   useEffect(() => {
+  //     setInputForm(car)
+  // }, [])
 
     const handleChange = (e) => {
         let { name, value } = e.target
@@ -107,10 +126,11 @@ const Upload = () => {
         formData.append('image', data.image[0])
 
         const token = localStorage.getItem('access_token')
-        dispatch(addCar(formData, token))
+        dispatch(updateCar(car._id, formData, token))
         history.push('/cars')
     }
     
+    if(error) return <ErrorPage></ErrorPage>
     return (
         <React.Fragment>
         <Header page='Upload'/>
@@ -122,7 +142,7 @@ const Upload = () => {
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
-              Add New Data
+              Update Data
             </Typography>
             <React.Fragment>
             </React.Fragment>
@@ -141,6 +161,7 @@ const Upload = () => {
                     required
                     name="overview"
                     label="Overview"
+                    placeholder={car.overview}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -150,6 +171,7 @@ const Upload = () => {
                     required
                     name="name"
                     label="Name"
+                    placeholder={car.name}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -159,6 +181,7 @@ const Upload = () => {
                     required
                     name="battery"
                     label="Battery (kWh)"
+                    placeholder={car.battery}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -168,6 +191,7 @@ const Upload = () => {
                     required
                     name="acceleration"
                     label="Acceleration 0 - 100 (sec)"
+                    placeholder={car.acceleration}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -177,6 +201,7 @@ const Upload = () => {
                     required
                     name="topSpeed"
                     label="Top Speed (km/h)"
+                    placeholder={car.topSpeed}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -186,6 +211,7 @@ const Upload = () => {
                     required
                     name="range"
                     label="Range (km)"
+                    placeholder={car.range}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -195,6 +221,7 @@ const Upload = () => {
                     required
                     name="efficiency"
                     label="Efficiency (Wh/km)"
+                    placeholder={car.efficiency}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -204,6 +231,7 @@ const Upload = () => {
                     required
                     name="fastCharge"
                     label="Fast Charge (km/h)"
+                    placeholder={car.fastCharge}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -213,6 +241,7 @@ const Upload = () => {
                     required
                     name="price"
                     label="Price (Euro)"
+                    placeholder={car.price}
                     fullWidth
                     onChange={handleChange}
                 />
@@ -241,4 +270,4 @@ const Upload = () => {
     )
 }
 
-export default Upload
+export default Update

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-// import Spinner from 'react-spinkit'
+import React, { useEffect } from 'react'
+import Spinner from 'react-spinkit'
 // import ErrorPage from './Error'
 // import useDebounce from '../hooks/useDebounce'
 import { ErrorPage } from '../pages'
@@ -10,8 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import Card from './Card'
 import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-
-
 
 const Content = () => {
     const cars = useSelector(state => state.carReducer.cars)
@@ -31,7 +29,7 @@ const Content = () => {
             </Typography>
             {
                 (loading && !cars.length) 
-                ? <div> Loading </div>
+                ? <div> <Spinner /> </div>
                         //  : (isSearching)
                         //     ? <div>
                         //         Loading

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { destroyCar } from '../store/actions/carAction'
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -17,7 +18,9 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
-import UnfoldMoreOutlinedIcon from '@material-ui/icons/UnfoldMoreOutlined';
+import DetailsIcon from '@material-ui/icons/Details';
+import EditAttributesIcon from '@material-ui/icons/EditAttributes';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,16 +60,20 @@ const Cards = (props) => {
   };
 
 
-  const handleFavorite = () => {
-    console.log('fav');
+  const handleFavorite = (id) => {
   }
 
-  const handleDestroy = () => {
-    console.log('destror');
+  const handleDestroy = (id) => {
+    const token = localStorage.getItem('access_token')
+    dispatch(destroyCar(id, token))
   }
 
   const handleDetail = (id) => {
     history.push(`/cars/${id}`)
+  }
+
+  const handleEdit = (id) => {
+    history.push(`/update/cars/${id}`)
   }
 
   return (
@@ -79,22 +86,27 @@ const Cards = (props) => {
             }
           </Avatar>
         }
+        action={
+          <IconButton onClick={() => handleFavorite(car._id)}>
+            <FavoriteIcon />
+          </IconButton>
+        }
         title={car.name.split(' ')[0]}
         subheader={car.name}
-      />
+        />
       <CardMedia
         className={classes.media}
         image={car.image}
       />
       <CardActions disableSpacing>
-        <IconButton onClick={() => handleFavorite(car._id)}>
-          <FavoriteIcon />
+      <IconButton onClick={() => handleDetail(car._id)}>
+        <DetailsIcon/>
+      </IconButton>
+        <IconButton onClick={() => handleEdit(car._id)}>
+        <EditAttributesIcon/>
         </IconButton>
         <IconButton onClick={() => handleDestroy(car._id)}>
           <DeleteSweepIcon />
-        </IconButton>
-        <IconButton onClick={() => handleDetail(car._id)}>
-          <UnfoldMoreOutlinedIcon/>
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {

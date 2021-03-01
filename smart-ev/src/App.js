@@ -2,13 +2,13 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  // Route
 } from 'react-router-dom'
 import {
   Home,
   Detail,
   Whistlist,
   Upload,
+  Update,
   Login,
   Register,
   Main
@@ -42,6 +42,9 @@ const App = () => {
             </AuthRoute>
             <AuthRoute path="/upload" type="private">
               <Upload></Upload>
+            </AuthRoute>
+            <AuthRoute path="/update/cars/:id" type="private">
+              <Update></Update>
             </AuthRoute>
           </Switch>
         </Router>

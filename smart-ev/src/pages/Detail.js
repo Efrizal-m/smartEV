@@ -5,7 +5,6 @@ import { fetchDetail } from '../store/actions/carAction'
 import Header from '../components/Header'
 import { ErrorPage } from '../pages'
 
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
@@ -22,7 +21,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        SmartEV
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -88,7 +87,7 @@ const Detail = () => {
 
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        Battery Electric Vehicle:
+                        Battery Electric Vehicle
                         </Typography>
                         <Typography variant="h6" component="h4">
                             {car.battery} kWh
@@ -97,7 +96,7 @@ const Detail = () => {
 
                     <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Acceleration ( 0 - 100 ):
+                    Acceleration ( 0 - 100 )
                     </Typography>
                     <Typography variant="h6" component="h4">
                         {car.acceleration} sec
@@ -106,7 +105,7 @@ const Detail = () => {
 
                     <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Top Speed:
+                    Top Speed
                     </Typography>
                     <Typography variant="h6" component="h4">
                         {car.topSpeed} km/h
@@ -115,7 +114,7 @@ const Detail = () => {
 
                     <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Range*:
+                    Range*
                     </Typography>
                     <Typography variant="h6" component="h4">
                         {car.range} km
@@ -124,7 +123,7 @@ const Detail = () => {
 
                     <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Efficiency*:
+                    Efficiency*
                     </Typography>
                     <Typography variant="h6" component="h4">
                         {car.efficiency} Wh/km
@@ -133,7 +132,7 @@ const Detail = () => {
 
                     <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Fast Charge:
+                    Fast Charge
                     </Typography>
                     <Typography variant="h6" component="h4">
                         {car.fastCharge} km/h
@@ -142,7 +141,7 @@ const Detail = () => {
 
                     <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Price:
+                    Price
                     </Typography>
                     <Typography variant="h6" component="h4">
                         {car.price} Euro
