@@ -2,7 +2,6 @@ const initState = {
   cars: [],
   car: {},
   whistlists: [],
-  filteredCar: [],
   inputFilteredCar: '',
   loading: false,
   error: false,
@@ -15,8 +14,6 @@ const reducer = (state = initState, action) => {
       return {...state, cars: action.payload}
     case 'SET_CAR': 
       return {...state, car: action.payload}
-    case 'SET_FILTERED_CAR': 
-      return {...state, filteredCar: action.payload}
     case 'SET_INPUT_FILTERED_CAR': 
       return {...state, inputFilteredCar: action.payload}
     case 'ADD_CAR': 

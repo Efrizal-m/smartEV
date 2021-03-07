@@ -47,22 +47,19 @@ const useStyles = makeStyles((theme) => ({
 
 
 const SearchBar = () => {
-    const [ search, setSearch ] = useState()
     const classes = useStyles();
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
-        const { name, value } = e.target
-        setSearch({...search, [name]: value })
-    }
-
-    const handleSubmit = () => {
-        dispatch(inputFiltered(search))
+        // const { name, value } = e.target
+        // const payload = {[name]: value }
+        dispatch(inputFiltered(e.target.value))
     }
     
     return (
         <div className={classes.search}>
         <div className={classes.searchIcon}>
+        <SearchIcon />
         </div>
         <InputBase
           placeholder="Search…"
@@ -74,7 +71,6 @@ const SearchBar = () => {
           inputProps={{ 'aria-label': 'search' }}
           onChange={(e) => handleChange(e)}
           />
-          <SearchIcon onClick={handleSubmit}/>
       </div>
       )
 }
