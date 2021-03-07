@@ -131,19 +131,12 @@ export const destroyCar = (id , token) => {
               'Your data file has been deleted.',
               'success'
             )
+            dispatch(inputFiltered(''))
           })
           .catch(error => {
             dispatch({ type: 'SET_ERROR', payload: error })
           })
     }
-}
-
-export const fetchFilteredCar = (payload) => {
-  return (dispatch, getState) => {
-    dispatch({ type: 'SET_FILTERED_CAR', payload})
-    const state = getState()
-    const cars = state.carReducer.cars
-  }
 }
 
 export const inputFiltered = (payload) => {
